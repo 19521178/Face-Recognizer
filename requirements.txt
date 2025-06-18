@@ -1,0 +1,6 @@
+Flask
+numpy
+opencv-python-headless
+insightface
+onnxruntime
+qdrant_client

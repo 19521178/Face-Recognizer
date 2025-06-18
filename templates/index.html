@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Face Recognizer</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f9;
+            color: #333;
+            text-align: center;
+            margin: 0;
+            padding: 20px;
+        }
+        .container {
+            max-width: 900px;
+            margin: auto;
+            background: #fff;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+        }
+        h1 {
+            color: #444;
+        }
+        .upload-form {
+            margin: 30px 0;
+        }
+        .upload-form input[type="file"] {
+            border: 1px solid #ddd;
+            padding: 10px;
+            border-radius: 4px;
+        }
+        .upload-form input[type="submit"] {
+            background-color: #007bff;
+            color: white;
+            padding: 12px 20px;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            font-size: 16px;
+        }
+        .upload-form input[type="submit"]:hover {
+            background-color: #0056b3;
+        }
+        .image-display {
+            display: flex;
+            justify-content: space-around;
+            flex-wrap: wrap;
+            margin-top: 30px;
+        }
+        .image-box {
+            flex-basis: 45%;
+            margin: 10px;
+        }
+        .image-box h2 {
+            font-size: 18px;
+            color: #555;
+        }
+        .image-box img {
+            max-width: 100%;
+            height: auto;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Upload an Image to Face Recognizer</h1>
+        <p>This app uses InsightLight to detect faces and draws a bounding box around it.</p>
+        
+        <div class="upload-form">
+            <form method="post" enctype="multipart/form-data">
+                <input type="file" name="file" required>
+                <input type="submit" value="Upload and Detect">
+            </form>
+        </div>
+
+        {% if processed_image %}
+        <hr>
+        <div class="image-display">
+            <div class="image-box">
+                <h2>Ảnh gốc</h2>
+                <img src="{{ url_for('static', filename='uploads/' + original_image) }}" alt="Original Image">
+            </div>
+            <div class="image-box">
+                <h2>Kết quả</h2>
+                <img src="{{ url_for('static', filename='uploads/' + processed_image) }}" alt="Processed Image">
+                <p>
+                    {% if href_url %}
+                    <a href="{{href_url}}">{{person_name}}</a>
+                    <br>
+                    {{person_career}}
+                    <br>
+                    Ngày sinh: {{person_birthdate}}
+                    {% else %}
+                    <p>Unknown</p>
+                    {% endif %}
+                </p>
+            </div>
+        </div>
+        {% endif %}
+    </div>
+</body>
+</html>

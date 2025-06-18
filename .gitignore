@@ -1,0 +1,12 @@
+*.json
+
+__pycache__/
+
+src/scripts/images/*/*/
+src/scripts/test_images/*
+
+src/scripts/__pycache__/
+static/uploads/
+venv/
+
+

@@ -1,0 +1,29 @@
+version: '3.8'
+
+services:
+  flask_app:
+    build: 
+      context: .
+      dockerfile: Dockerfile
+      args:
+        - DOCKER_USERNAME=anngoen
+    image: anngoen/face_flask_app
+    ports:
+      - "5000:5000"
+    depends_on:
+      - qdrant
+    environment:
+      - FLASK_ENV=development
+    volumes:
+      - .:/app
+
+  qdrant:
+    image: qdrant/qdrant
+    ports:
+      - "6333:6333"
+    volumes:
+      - qdrant_storage:/qdrant/storage
+
+volumes:
+  qdrant_storage:
+

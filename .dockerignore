@@ -1,0 +1,8 @@
+src/scripts/*.json
+__pycache__/
+src/scripts/images/*
+src/scripts/images_test/*
+src/scripts/__pycache__/
+src/services/__pycache__
+static/uploads/*
+venv/
