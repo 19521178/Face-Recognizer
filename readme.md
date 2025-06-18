@@ -5,6 +5,9 @@ source venv/bin/activate  # On Windows, use `venv\Scripts\activate`
 # Install the requirements
 pip install -r requirements.txt
 
+# Or use docker
+docker-compose up -d
+
 # Create database collection if not exists
 python3 /src/services/repository.py
 # Or alternative
@@ -20,11 +23,3 @@ curl 'http://localhost:6333/collections/faces' \
 # Restore collection
 curl -X POST 'http://localhost:6333/collections/faces/snapshots/upload?priority=snapshot' -H 'Content-Type:multipart/form-data' -F 'snapshot=@faces-shapshot.snapshot'
 
-
-PUT collections/faces
-{
-  "vectors": {
-    "size": 512,
-    "distance": "Cosine"
-  }
-}
