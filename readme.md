@@ -1,12 +1,22 @@
-# Create and activate a virtual environment (optional but recommended)
+# Flow recognize a face
+1. Use inlightface to embedding vector 512 dimensions
+2. Search in vector database (all vectors were crawled on nguoinoitieng.tv and embedded)
+3. Draw bounding box and return person info
+
+# Install by 2 optional ways
+1. Use docker (Recommended)
+
+docker-compose up -d
+
+2. Instal directly on local
+- Create and activate a virtual environment (optional but recommended)
 python3 -m venv venv
+
 source venv/bin/activate  # On Windows, use `venv\Scripts\activate`
 
-# Install the requirements
+- Install the requirements
 pip install -r requirements.txt
 
-# Or use docker
-docker-compose up -d
 
 # Create database collection if not exists
 python3 /src/services/repository.py
